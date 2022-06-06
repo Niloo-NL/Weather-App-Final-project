@@ -4,33 +4,38 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Weather App</title>
   </head>
   <body>
     <div class="container">
       <div class="weather-app">
         <div class="row">
-          <div class="col-6">
-            <h1>City Name</h1>
-            <h2>Monday 10:20</h2>
+          <div class="col">
+            <h1 class="city-name">City Name</h1>
+            <h2>Monday, 10:20</h2>
             <p>Clear</p>
           </div>
-
-          <div class="col-6">
+          <div class="col-md-auto weather-info">
             <p>
-              <span> 12 C | F</span>
+              <span class="temperature"> 12</span><span> C </span> |
+              <span> F </span>
               <img src="img/partly_cloudy.png" />
               <br />
-              wind: 20
-              <br />
-              Humidity: 40
+              wind: 20 , Humidity: 40
             </p>
           </div>
         </div>

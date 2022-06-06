@@ -1,0 +1,29 @@
+body {
+  font-family: "Lefont-family: 'Lexend Deca', sans-serif;xend Deca", sans-serif;
+}
+
+.weather-app {
+  max-width: 600px;
+  margin: 150px auto;
+  padding: 40px;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: 10px;
+  margin-bottom: 0;
+}
+h2 {
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.weather-info {
+  text-align: right;
+}
+
+.temperature {
+  font-size: 60px;
+}
