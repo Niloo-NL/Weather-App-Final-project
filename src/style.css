@@ -4,7 +4,7 @@ body {
 
 .weather-app {
   max-width: 600px;
-  margin: 150px auto;
+  margin: 150px auto 20px;
   padding: 40px;
   border: 1px solid grey;
   border-radius: 10px;
@@ -26,4 +26,16 @@ h2 {
 
 .temperature {
   font-size: 60px;
+}
+.weather-app-wrapper {
+  max-width: 600px;
+  margin: 150px auto;
+}
+img {
+  float: left;
+  width: 80px;
+}
+.units {
+  position: relative;
+  top: -30px;
 }

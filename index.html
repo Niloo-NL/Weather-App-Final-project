@@ -22,21 +22,26 @@
   </head>
   <body>
     <div class="container">
-      <div class="weather-app">
-        <div class="row">
-          <div class="col">
-            <h1 class="city-name">City Name</h1>
-            <h2>Monday, 10:20</h2>
-            <p>Clear</p>
-          </div>
-          <div class="col-md-auto weather-info">
-            <p>
-              <span class="temperature"> 12</span><span> C </span> |
-              <span> F </span>
-              <img src="img/partly_cloudy.png" />
-              <br />
-              wind: 20 , Humidity: 40
-            </p>
+      <div class="weather-app-wrapper">
+        <div class="weather-app">
+          <div class="row">
+            <div class="col">
+              <h1 class="city-name">City Name</h1>
+              <h2>Monday, 10:20</h2>
+              <p>Clear</p>
+            </div>
+            <div class="col-md-auto weather-info">
+              <p class="today-weather">
+                <span class="temperature">12</span
+                ><small class="units"
+                  ><span>°C </span> |
+                  <span> °F</span>
+                </small>
+                <img src="img/partly_cloudy.png" />
+                <br />
+                wind: 20 , Humidity: 40
+              </p>
+            </div>
           </div>
         </div>
         <small>
@@ -49,6 +54,7 @@
         </small>
       </div>
     </div>
+
     <script src="src/java.js"></script>
   </body>
 </html>
