@@ -39,3 +39,6 @@ img {
   position: relative;
   top: -30px;
 }
+.description {
+  text-transform: capitalize;
+}
