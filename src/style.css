@@ -31,9 +31,9 @@ h2 {
   max-width: 600px;
   margin: 150px auto;
 }
-img {
+.icon {
   float: left;
-  width: 80px;
+  width: 100px;
 }
 .units {
   position: relative;
