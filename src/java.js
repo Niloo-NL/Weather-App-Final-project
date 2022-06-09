@@ -8,6 +8,19 @@ function formatDate(timestamp) {
   if (hours < 10) {
     hours = `0${hours}`;
   }
+  if (hours > 20 && response.data.weather[0].description === " clear sky") {
+    let icon = document.querySelector("#icon");
+    icon.setAttribute("src", "src/img/night.svg");
+    icon.setAttribute("alt", "night");
+  }
+  if (
+    (hours > 20 && response.data.weather[0].description === "few clouds") ||
+    "scattered clouds"
+  ) {
+    let icon = document.querySelector("#icon");
+    icon.setAttribute("src", "src/img/cloudy-night-1.svg");
+    icon.setAttribute("alt", "night");
+  }
   let minutes = date.getMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`;
@@ -78,7 +91,7 @@ function displayTemp(response) {
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 
-let cityName = "New York";
+let cityName = "Florida";
 
 let apiKey = "5c245842fe70a2efee1bd472c25f25b9";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
