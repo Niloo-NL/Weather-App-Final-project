@@ -25,7 +25,25 @@
     <div class="container">
       <div class="weather-app-wrapper">
         <div class="weather-app">
-          <div class="row">
+          <form id="search-form">
+            <div class="row">
+              <div class="col-9">
+            <input 
+            id="city-input"
+            type="search" 
+            placeholder="Type a city.." 
+            class="form-control"
+            autocomplete="off"
+            />
+            </div>
+            <div class="col-3">
+            <input 
+            type="submit" value="search" class="btn btn-primary w-100"
+            />
+          </div>
+            </div>
+          </form>
+          <div class="row search-result">
             <div class="col">
               <h1 class="city-name" id="city">City Name</h1>
               <h2 id="date">Last updated at: </h2>

@@ -42,3 +42,7 @@ h2 {
 .description:first-letter {
   text-transform: capitalize;
 }
+
+.search-result {
+  margin-top: 20px;
+}

@@ -29,7 +29,6 @@ function formatDate(timestamp) {
 function nightIconElement(element) {
   let date = new Date();
   let hours = date.getHours();
-
   if (hours > 20 && element === " clear sky") {
     let icon = document.querySelector("#icon");
     icon.setAttribute("src", "src/img/night.svg");
@@ -39,6 +38,7 @@ function nightIconElement(element) {
     let icon = document.querySelector("#icon");
     icon.setAttribute("src", "src/img/cloudy-night-1.svg");
     icon.setAttribute("alt", "night-cloudy");
+  } else {
   }
 }
 
@@ -49,6 +49,8 @@ function displayTemp(response) {
   let humidityInfo = document.querySelector("#humidity");
   let windInfo = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
+  let nightIcon = document.querySelector("#icon");
+  nightIcon.innerHTML = nightIconElement(response.data.weather[0].description);
   let icon = document.querySelector("#icon");
 
   if (response.data.weather[0].description === " clear sky") {
@@ -86,8 +88,6 @@ function displayTemp(response) {
     icon.setAttribute("src", "src/img/cloudy.svg");
     icon.setAttribute("alt", "mist");
   }
-  let nightIcon = document.querySelector("#icon");
-  nightIcon.innerHTML = nightIconElement(response.data.weather[0].description);
 
   temperature.innerHTML = Math.round(response.data.main.temp);
   cityName.innerHTML = response.data.name;
@@ -97,9 +97,19 @@ function displayTemp(response) {
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 
-let cityName = "Berlin";
+function citySearch(cityName) {
+  let apiKey = "5c245842fe70a2efee1bd472c25f25b9";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemp);
+}
 
-let apiKey = "5c245842fe70a2efee1bd472c25f25b9";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+function citySubmit(event) {
+  event.preventDefault();
+  let cityElement = document.querySelector("#city-input");
+  citySearch(cityElement.value);
+}
 
-axios.get(apiUrl).then(displayTemp);
+citySearch("Berlin");
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", citySubmit);
