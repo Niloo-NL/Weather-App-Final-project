@@ -88,7 +88,7 @@ function displayTemp(response) {
     icon.setAttribute("src", "src/img/cloudy.svg");
     icon.setAttribute("alt", "mist");
   }
-
+  console.log(response);
   temperature.innerHTML = Math.round(response.data.main.temp);
   cityName.innerHTML = response.data.name;
   descriptionInfo.innerHTML = response.data.weather[0].description;

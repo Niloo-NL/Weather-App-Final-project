@@ -11,11 +11,13 @@ body {
 }
 
 h1 {
+  margin-top: 10px;
   font-size: 50px;
   font-weight: 10px;
   margin-bottom: 0;
 }
 h2 {
+  margin-top: 10px;
   font-size: 20px;
   margin-bottom: 0;
 }
@@ -44,5 +46,9 @@ h2 {
 }
 
 .search-result {
-  margin-top: 20px;
+  margin-top: 25px;
+}
+.weather-extra-info,
+.extra-info {
+  color: rgb(93, 97, 100);
 }
