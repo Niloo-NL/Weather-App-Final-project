@@ -49,6 +49,9 @@ function displayTemp(response) {
   let humidityInfo = document.querySelector("#humidity");
   let windInfo = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
+
+  celsiusTemp = response.data.main.temp;
+
   let nightIcon = document.querySelector("#icon");
   nightIcon.innerHTML = nightIconElement(response.data.weather[0].description);
   let icon = document.querySelector("#icon");
@@ -108,8 +111,34 @@ function citySubmit(event) {
   let cityElement = document.querySelector("#city-input");
   citySearch(cityElement.value);
 }
+let celsiusTemp = null;
 
 citySearch("Berlin");
 
+function displayFahrenheitTemp(event) {
+  event.preventDefault();
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  celciusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+
+  let tempeElement = document.querySelector("#temp");
+  tempeElement.innerHTML = Math.round(fahrenheitTemp);
+}
+
+function displaycelciusTemp(event) {
+  event.preventDefault();
+
+  fahrenheitLink.classList.remove("active");
+  celciusLink.classList.add("active");
+  let tempeElement = document.querySelector("#temp");
+  tempeElement.innerHTML = Math.round(celsiusTemp);
+}
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", citySubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+
+let celciusLink = document.querySelector("#celcius");
+celciusLink.addEventListener("click", displaycelciusTemp);

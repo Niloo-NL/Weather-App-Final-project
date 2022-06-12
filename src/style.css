@@ -52,3 +52,16 @@ h2 {
 .extra-info {
   color: rgb(93, 97, 100);
 }
+
+a {
+  text-decoration: none;
+}
+
+.active {
+  cursor: default;
+  color: black;
+}
+.active:hover {
+  text-decoration: none;
+  color: black;
+}
