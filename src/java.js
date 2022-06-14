@@ -26,6 +26,33 @@ function formatDate(timestamp) {
   return `${day}, ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let forcastDay = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri"];
+  forcastDay.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+                <div class="col-2">
+                  <div class="date-forecast">
+                  ${day}
+                </div>
+                  <img src="src/img/cloudy-day-2.svg">
+                <div class="forecast-temp">
+                  <span class="max-temp">
+                    19°
+                  </span>
+                  <span  class="min-temp">
+                    12°
+                  </span>
+              </div>
+              </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function nightIconElement(element) {
   let date = new Date();
   let hours = date.getHours();
@@ -91,7 +118,6 @@ function displayTemp(response) {
     icon.setAttribute("src", "src/img/cloudy.svg");
     icon.setAttribute("alt", "mist");
   }
-  console.log(response);
   temperature.innerHTML = Math.round(response.data.main.temp);
   cityName.innerHTML = response.data.name;
   descriptionInfo.innerHTML = response.data.weather[0].description;
@@ -114,6 +140,7 @@ function citySubmit(event) {
 let celsiusTemp = null;
 
 citySearch("Berlin");
+displayForecast();
 
 function displayFahrenheitTemp(event) {
   event.preventDefault();
