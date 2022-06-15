@@ -1,17 +1,19 @@
 body {
   font-family: "Lefont-family: 'Lexend Deca', sans-serif;xend Deca", sans-serif;
+  background-color: white;
 }
 
 .weather-app {
   max-width: 600px;
-  margin: 150px auto 20px;
+  margin: 150px auto 10px;
   padding: 40px;
   border: 1px solid grey;
   border-radius: 10px;
+  background-color: #feffdf;
 }
 
 h1 {
-  margin-top: 10px;
+  margin-top: 15px;
   font-size: 50px;
   font-weight: 10px;
   margin-bottom: 0;
@@ -69,11 +71,13 @@ a {
 .weather-forecast {
   margin-top: 20px;
   text-align: center;
+  background-color: white;
 }
 
 .date-forecast {
   font-size: 16px;
   color: rgb(67, 70, 72);
+  border-radius: 10px;
 }
 
 .forecast-temp {
