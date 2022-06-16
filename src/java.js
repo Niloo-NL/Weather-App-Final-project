@@ -26,47 +26,43 @@ function formatDate(timestamp) {
   return `${day}, ${hours}:${minutes}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Friday", "Sat"];
+  return days[day];
+}
+
 function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
+
   let forecastHTML = `<div class="row">`;
-  let forcastDay = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri"];
-  forcastDay.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
                 <div class="col-2">
                   <div class="date-forecast">
-                  ${day}
+                  ${formatDay(forecastDay.dt)}
                 </div>
-                  <img src="src/img/cloudy-day-2.svg">
+                  <img src="src/img/${
+                    forecastDay.weather[0].icon
+                  }.svg" width=70px> 
                 <div class="forecast-temp">
                   <span class="max-temp">
-                    19°
-                  </span>
+                    ${Math.round(forecastDay.temp.max)}°
+                  </span> -
                   <span  class="min-temp">
-                    12°
+                    ${Math.round(forecastDay.temp.min)}°
                   </span>
               </div>
               </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-}
-
-function nightIconElement(element) {
-  let date = new Date();
-  let hours = date.getHours();
-  if (hours > 20 && element === " clear sky") {
-    let icon = document.querySelector("#icon");
-    icon.setAttribute("src", "src/img/night.svg");
-    icon.setAttribute("alt", "night");
-  }
-  if ((hours > 20 && element === "few clouds") || "scattered clouds") {
-    let icon = document.querySelector("#icon");
-    icon.setAttribute("src", "src/img/cloudy-night-1.svg");
-    icon.setAttribute("alt", "night-cloudy");
-  } else {
-  }
 }
 
 function getForecast(coordinates) {
@@ -74,6 +70,8 @@ function getForecast(coordinates) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
+
+function getIcon(response) {}
 
 function displayTemp(response) {
   let temperature = document.querySelector("#temp");
@@ -85,14 +83,12 @@ function displayTemp(response) {
 
   celsiusTemp = response.data.main.temp;
 
-  let nightIcon = document.querySelector("#icon");
-  nightIcon.innerHTML = nightIconElement(response.data.weather[0].description);
   let backgroundImage = document.querySelector("#bg-img");
 
   let icon = document.querySelector("#icon");
 
   if (response.data.weather[0].description === "clear sky") {
-    icon.setAttribute("src", "src/img/day.svg");
+    icon.setAttribute("src", "src/img/01d.svg");
     icon.setAttribute("alt", "sunny");
     backgroundImage.setAttribute(
       "style",
@@ -102,7 +98,7 @@ function displayTemp(response) {
     response.data.weather[0].description === "broken clouds" ||
     "overcast clouds"
   ) {
-    icon.setAttribute("src", "src/img/cloudy.svg");
+    icon.setAttribute("src", "src/img/03d.svg");
     icon.setAttribute("alt", "broken-clouds");
     backgroundImage.setAttribute(
       "style",
@@ -112,42 +108,42 @@ function displayTemp(response) {
     response.data.weather[0].description === "few clouds" ||
     "scattered clouds"
   ) {
-    icon.setAttribute("src", "src/img/cloudy-day-2.svg");
+    icon.setAttribute("src", "src/img/02d.svg");
     icon.setAttribute("alt", "cloudy");
     backgroundImage.setAttribute(
       "style",
       `background-image: url(src/img/clouds.webp);`
     );
   } else if (response.data.weather[0].description === "shower rain") {
-    icon.setAttribute("src", "src/img/rainy-6.svg");
+    icon.setAttribute("src", "src/img/09d.svg");
     icon.setAttribute("alt", "shower-rain");
     backgroundImage.setAttribute(
       "style",
       `background-image: url(src/img/showerrain.jpg);`
     );
   } else if (response.data.weather[0].description === "rain") {
-    icon.setAttribute("src", "src/img/rainy-1.svg");
+    icon.setAttribute("src", "src/img/10d.svg");
     icon.setAttribute("alt", "rainy");
     backgroundImage.setAttribute(
       "style",
       `background-image: url(src/img/rain.jpg);`
     );
   } else if (response.data.weather[0].description === "thunderstorm") {
-    icon.setAttribute("src", "src/img/thunder.svg");
+    icon.setAttribute("src", "src/img/11d.svg");
     icon.setAttribute("alt", "thunderstorms");
     backgroundImage.setAttribute(
       "style",
       `background-image: url(src/img/thunderstorm.jpg);`
     );
   } else if (response.data.weather[0].description === "snow") {
-    icon.setAttribute("src", "src/img/snowy-5.svg");
+    icon.setAttribute("src", "src/img/13d.svg");
     icon.setAttribute("alt", "snowy");
     backgroundImage.setAttribute(
       "style",
       `background-image: url(src/img/snowy.jpg);`
     );
   } else if (response.data.weather[0].description === "mist") {
-    icon.setAttribute("src", "src/img/cloudy.svg");
+    icon.setAttribute("src", "src/img/04d.svg");
     icon.setAttribute("alt", "mist");
     backgroundImage.setAttribute(
       "style",
