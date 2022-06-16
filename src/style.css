@@ -8,6 +8,7 @@ body {
   padding: 40px;
   border: 1px solid grey;
   border-radius: 10px;
+  background-color: #feffdf;
 }
 
 h1 {
@@ -69,6 +70,7 @@ a {
 .weather-forecast {
   margin-top: 20px;
   text-align: center;
+  background-color: white;
 }
 
 .date-forecast {
@@ -83,4 +85,12 @@ a {
 
 .min-temp {
   color: rgb(107, 114, 119);
+}
+
+.bg-img {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
 }

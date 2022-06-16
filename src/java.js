@@ -87,26 +87,37 @@ function displayTemp(response) {
 
   let nightIcon = document.querySelector("#icon");
   nightIcon.innerHTML = nightIconElement(response.data.weather[0].description);
+  let backgroundImage = document.querySelector("#bg-img");
 
   let icon = document.querySelector("#icon");
 
-  // Problem with night icon
-  //if ((response.data.weather[0].description === "clear sky") & (hours > 20)) {
-  //icon.setAttribute("src", "src/img/night.svg");
-  //icon.setAttribute("alt", "night");
-  // }
   if (response.data.weather[0].description === "clear sky") {
     icon.setAttribute("src", "src/img/day.svg");
     icon.setAttribute("alt", "sunny");
-  } else if (response.data.weather[0].description === "broken clouds") {
+    backgroundImage.setAttribute(
+      "style",
+      `background-image: url(src/img/clouds.webp);`
+    );
+  } else if (
+    response.data.weather[0].description === "broken clouds" ||
+    "overcast clouds"
+  ) {
     icon.setAttribute("src", "src/img/cloudy.svg");
     icon.setAttribute("alt", "broken-clouds");
+    backgroundImage.setAttribute(
+      "style",
+      `background-image: url(src/img/cloudyday.jpg);`
+    );
   } else if (
     response.data.weather[0].description === "few clouds" ||
     "scattered clouds"
   ) {
     icon.setAttribute("src", "src/img/cloudy-day-2.svg");
     icon.setAttribute("alt", "cloudy");
+    backgroundImage.setAttribute(
+      "style",
+      `background-image: url(src/img/clouds.webp);`
+    );
   } else if (response.data.weather[0].description === "shower rain") {
     icon.setAttribute("src", "src/img/rainy-6.svg");
     icon.setAttribute("alt", "shower-rain");
@@ -115,14 +126,39 @@ function displayTemp(response) {
     icon.setAttribute("alt", "rainy");
   } else if (response.data.weather[0].description === "thunderstorm") {
     icon.setAttribute("src", "src/img/thunder.svg");
-    icon.setAttribute("alt", "thunderstorm");
+    icon.setAttribute("alt", "thunderstorms");
+    backgroundImage.setAttribute(
+      "style",
+      `background-image: url(src/img/thunderstorm.jpg);`
+    );
   } else if (response.data.weather[0].description === "snow") {
     icon.setAttribute("src", "src/img/snowy-5.svg");
     icon.setAttribute("alt", "snowy");
   } else if (response.data.weather[0].description === "mist") {
     icon.setAttribute("src", "src/img/cloudy.svg");
     icon.setAttribute("alt", "mist");
-  }
+  } else if (
+    (response.data.weather[0].description === "clear sky" || "clear") &
+    (hours > 20)
+  ) {
+    icon.setAttribute("src", "src/img/night.svg");
+    icon.setAttribute("alt", "night");
+    backgroundImage.setAttribute(
+     "style",
+     `background-image: url(src/img/clearnight.jpg);`
+   );
+  }  else if (
+   (response.data.weather[0].description === "broken clouds" ||
+   "overcast clouds") &
+   (hours > 20)
+  ) {
+    icon.setAttribute("src", "src/img/night.svg");
+      icon.setAttribute("alt", "night cloudy");
+    backgroundImage.setAttribute(
+     "style",
+    `background-image: url(src/img/cloudynight.jpg);`
+    );
+
   temperature.innerHTML = Math.round(response.data.main.temp);
   cityName.innerHTML = response.data.name;
   descriptionInfo.innerHTML = response.data.weather[0].description;
@@ -147,6 +183,7 @@ function citySubmit(event) {
 let celsiusTemp = null;
 
 citySearch("Berlin");
+
 
 function displayFahrenheitTemp(event) {
   event.preventDefault();
