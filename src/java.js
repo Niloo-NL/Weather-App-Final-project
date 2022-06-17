@@ -149,7 +149,10 @@ function displayTemp(response) {
       "style",
       `background-image: url(src/img/mist.jpg);`
     );
-  } else if (
+  }
+  let date = new Date(response.data.dt * 1000);
+  let hours = date.getHours();
+  if (
     (response.data.weather[0].description === "clear sky" || "clear") &
     (hours > 20)
   ) {
@@ -159,7 +162,8 @@ function displayTemp(response) {
       "style",
       `background-image: url(src/img/clearnight.jpg);`
     );
-  } else if (
+  }
+  if (
     (response.data.weather[0].description === "few clouds" ||
       "scattered clouds") &
     (hours > 20)
