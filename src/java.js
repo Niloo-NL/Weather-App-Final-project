@@ -165,7 +165,9 @@ function displayTemp(response) {
   }
   if (
     (response.data.weather[0].description === "few clouds" ||
-      "scattered clouds") &
+      "scattered clouds" ||
+      "broken clouds" ||
+      "overcast clouds") &
     (hours > 20)
   ) {
     icon.setAttribute("src", "src/img/cloudy-night-2.svg");
