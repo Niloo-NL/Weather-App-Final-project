@@ -53,7 +53,7 @@ function displayForecast(response) {
                 <div class="forecast-temp">
                   <span class="max-temp">
                     ${Math.round(forecastDay.temp.max)}°
-                  </span> -
+                  </span> |
                   <span  class="min-temp">
                     ${Math.round(forecastDay.temp.min)}°
                   </span>
@@ -152,31 +152,6 @@ function displayTemp(response) {
   }
   let date = new Date(response.data.dt * 1000);
   let hours = date.getHours();
-  if (
-    (response.data.weather[0].description === "clear sky" || "clear") &
-    (hours > 20)
-  ) {
-    icon.setAttribute("src", "src/img/night.svg");
-    icon.setAttribute("alt", "night");
-    backgroundImage.setAttribute(
-      "style",
-      `background-image: url(src/img/clearnight.jpg);`
-    );
-  }
-  if (
-    (response.data.weather[0].description === "few clouds" ||
-      "scattered clouds" ||
-      "broken clouds" ||
-      "overcast clouds") &
-    (hours > 20)
-  ) {
-    icon.setAttribute("src", "src/img/cloudy-night-2.svg");
-    icon.setAttribute("alt", "night cloudy");
-    backgroundImage.setAttribute(
-      "style",
-      `background-image: url(src/img/cloudynight.jpg);`
-    );
-  }
 
   temperature.innerHTML = Math.round(response.data.main.temp);
   cityName.innerHTML = response.data.name;
