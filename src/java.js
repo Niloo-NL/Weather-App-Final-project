@@ -38,6 +38,7 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
+
   forecast.forEach(function (forecastDay, index) {
     if (index < 6) {
       forecastHTML =
@@ -84,7 +85,6 @@ function displayTemp(response) {
   celsiusTemp = response.data.main.temp;
 
   let backgroundImage = document.querySelector("#bg-img");
-
   let icon = document.querySelector("#icon");
 
   if (response.data.weather[0].description === "clear sky") {
@@ -114,14 +114,17 @@ function displayTemp(response) {
       "style",
       `background-image: url(src/img/clouds.webp);`
     );
-  } else if (response.data.weather[0].description === "shower rain") {
+  } else if (
+    response.data.weather[0].description === "shower rain" ||
+    "heavy rain"
+  ) {
     icon.setAttribute("src", "src/img/09d.svg");
     icon.setAttribute("alt", "shower-rain");
     backgroundImage.setAttribute(
       "style",
       `background-image: url(src/img/showerrain.jpg);`
     );
-  } else if (response.data.weather[0].description === "rain") {
+  } else if (response.data.weather[0].description === "Light rain" || "rain") {
     icon.setAttribute("src", "src/img/10d.svg");
     icon.setAttribute("alt", "rainy");
     backgroundImage.setAttribute(
@@ -152,6 +155,32 @@ function displayTemp(response) {
   }
   let date = new Date(response.data.dt * 1000);
   let hours = date.getHours();
+
+  if (
+    (response.data.weather[0].description === "clear sky" || "clear") &
+    (hours > 20)
+  ) {
+    icon.setAttribute("src", "src/img/night.svg");
+    icon.setAttribute("alt", "night");
+    backgroundImage.setAttribute(
+      "style",
+      `background-image: url(src/img/clearnight.jpg);`
+    );
+  }
+  if (
+    (response.data.weather[0].description === "few clouds" ||
+      "scattered clouds" ||
+      "broken clouds" ||
+      "overcast clouds") &
+    (hours > 20)
+  ) {
+    icon.setAttribute("src", "src/img/cloudy-night-2.svg");
+    icon.setAttribute("alt", "night cloudy");
+    backgroundImage.setAttribute(
+      "style",
+      `background-image: url(src/img/cloudynight.jpg);`
+    );
+  }
 
   temperature.innerHTML = Math.round(response.data.main.temp);
   cityName.innerHTML = response.data.name;
